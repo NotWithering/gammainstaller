@@ -117,6 +117,10 @@ func agrees(response string, favor bool) (agrees bool) {
 		yes bool = true
 		no  bool = false
 	)
+	const (
+		agree    bool = true
+		disagree bool = false
+	)
 
 	response = strings.ToLower(response)
 	response = strings.TrimSpace(response)
@@ -124,12 +128,12 @@ func agrees(response string, favor bool) (agrees bool) {
 
 	if favor == yes {
 		if response == "" || response == "y" || response == "yes" {
-			return true
+			return agree
 		}
-		return false
+		return disagree
 	}
 	if response == "" || response == "n" || response == "no" {
-		return false
+		return disagree
 	}
-	return true
+	return agree
 }
