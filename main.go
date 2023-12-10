@@ -44,8 +44,12 @@ func main() {
 	defer resp.Body.Close()
 	/* */
 
-	var body []byte
-	resp.Body.Read(body)
+	fmt.Println("Reading body...")
+	/* */
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("Error while reading body.\n╰> %s\n", err)
+	}
 
 	fmt.Println("Parsing install path...")
 	/* */
