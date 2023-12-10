@@ -73,8 +73,6 @@ func main() {
 		return
 	}
 
-	fmt.Println([]byte(in))
-
 	if !agrees(in, true) {
 		return
 	}
