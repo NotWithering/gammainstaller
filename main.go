@@ -50,6 +50,7 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error while reading body.\n╰> %s\n", err)
 	}
+	/* */
 
 	fmt.Println("Parsing install path...")
 	/* */
