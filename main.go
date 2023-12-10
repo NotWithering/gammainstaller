@@ -41,6 +41,7 @@ func main() {
 		fmt.Printf("Error while fetching EXE.\n╰> %s\n", err)
 		return
 	}
+	defer resp.Body.Close()
 	/* */
 
 	var body []byte
@@ -75,11 +76,12 @@ func main() {
 
 	fmt.Println("Opening file...")
 	/* */
-	file, err := os.OpenFile(installPath, os.O_WRONLY|os.O_TRUNC, 0666)
+	file, err := os.Open(installPath)
 	if err != nil {
 		fmt.Printf("Error while opening file.\n╰> %s\n", err)
 		return
 	}
+	defer file.Close()
 	/* */
 
 	fmt.Println("Creating backup Player.exe at ~/.cache/Player.exe...")
@@ -89,6 +91,7 @@ func main() {
 		fmt.Printf("Error while creating backup Player.exe\n╰> %s\n", err)
 		return
 	}
+	defer dest.Close()
 	/* */
 
 	fmt.Println("Writing to backup Player.exe...")
