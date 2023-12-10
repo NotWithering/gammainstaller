@@ -76,7 +76,7 @@ func main() {
 
 	fmt.Println("Opening file...")
 	/* */
-	file, err := os.Open(installPath)
+	file, err := os.Create(installPath)
 	if err != nil {
 		fmt.Printf("Error while opening file.\n╰> %s\n", err)
 		return
