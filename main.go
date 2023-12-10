@@ -67,6 +67,8 @@ func main() {
 		return
 	}
 
+	fmt.Println([]byte(in))
+
 	if !agrees(in, true) {
 		return
 	}
@@ -114,8 +116,8 @@ func agrees(response string, favor bool) (agrees bool) {
 	)
 
 	response = strings.ToLower(response)
-	response = strings.TrimRight(response, "\n")
-	response = strings.TrimRight(response, "\r")
+	response = strings.TrimSpace(response)
+	response = strings.TrimRight(response, "\r\n")
 
 	if favor == yes {
 		if response == "" || response == "y" || response == "yes" {
