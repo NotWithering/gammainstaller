@@ -48,6 +48,8 @@ func main() {
 			version = noVersion
 		} else {
 			version = string(buf)
+			version = strings.ReplaceAll(version, "\r", "")
+			version = strings.ReplaceAll(version, "\n", "")
 		}
 	}
 	/* */
