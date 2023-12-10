@@ -34,11 +34,29 @@ func main() {
 	}
 	/* */
 
-	fmt.Println("Fetching EXE...")
+	fmt.Println("Fetching version...")
 	/* */
-	resp, err := http.Get(url)
+	var version string
+	resp, err := http.Get(versionUrl)
 	if err != nil {
-		fmt.Printf("Error while fetching EXE.\n╰> %s\n", err)
+		fmt.Printf("Error while fetching version\n╰> %s\n", err)
+		version = noVersion
+	} else {
+		buf, err := io.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Printf("Error while reading body\n╰> %s\n", err)
+			version = noVersion
+		} else {
+			version = string(buf)
+		}
+	}
+	/* */
+
+	fmt.Printf("Fetching Player.exe %s...\n", version)
+	/* */
+	resp, err = http.Get(url)
+	if err != nil {
+		fmt.Printf("Error while fetching Player.exe\n╰> %s\n", err)
 		return
 	}
 	defer resp.Body.Close()
@@ -65,8 +83,8 @@ func main() {
 
 	var installPath string = filepath.Join(paths...)
 
-	fmt.Printf("Install at %s?\n╰[Y/n]: ", installPath)
-
+	fmt.Printf("Install %s at %s?\n╰[Y/n]: ", version, installPath)
+	/* */
 	in, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Printf("Error while reading string.\n╰> %s", err)
@@ -76,6 +94,7 @@ func main() {
 	if !agrees(in, true) {
 		return
 	}
+	/* */
 
 	fmt.Println("Opening file...")
 	/* */
@@ -105,14 +124,14 @@ func main() {
 	}
 	/* */
 
-	fmt.Println("Overwriting Player.exe...")
+	fmt.Printf("Installing Gamma Client %s...\n", version)
 	/* */
 	if _, err := file.Write(body); err != nil {
 		fmt.Printf("Error while overwriting Player.exe")
 	}
 	/* */
 
-	fmt.Println("\nGamma Client is now installed!")
+	fmt.Printf("\nGamma Client %s is now installed!\n", version)
 }
 
 func agrees(response string, favor bool) (agrees bool) {
