@@ -108,6 +108,13 @@ func main() {
 	defer file.Close()
 	/* */
 
+	fmt.Println("Creating ~/.cache/ if it doesn't already exist...")
+	/* */
+	if err := os.MkdirAll(filepath.Join(currentUser.HomeDir, ".cache"), os.ModePerm); err != nil {
+		fmt.Printf("Error while creating ~/.cache/\n╰> %s\n", err)
+	}
+	/* */
+
 	fmt.Println("Creating backup Player.exe at ~/.cache/Player.exe...")
 	/* */
 	dest, err := os.Create(filepath.Join(currentUser.HomeDir, ".cache", "Player.exe"))
