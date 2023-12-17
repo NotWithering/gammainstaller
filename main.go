@@ -25,6 +25,10 @@ func main() {
 		return
 	}
 
+	/* */
+	fmt.Printf("DISCLAIMER\n├> %s\n╰> %s\n", "Using a hacked client may get you banned on BrickHill. See: https://www.brick-hill.com/terms.", "Installer source code availible at https://github.com/NotWithering/gammainstaller.")
+	/* */
+
 	fmt.Println("Getting current user...")
 	/* */
 	currentUser, err := user.Current()
