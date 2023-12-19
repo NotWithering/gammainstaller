@@ -26,7 +26,7 @@ func main() {
 	}
 
 	/* */
-	fmt.Printf("DISCLAIMER\n├> %s\n╰> %s\n", "Using a hacked client may get you banned on BrickHill. See: https://www.brick-hill.com/terms.", "Installer source code availible at https://github.com/NotWithering/gammainstaller.")
+	fmt.Printf("DISCLAIMER\n├> %s\n╰> %s\n", "Using a hacked client has a very low change of getting you banned on BrickHill. But watch our for mods in your game! 🎓 See: https://www.brick-hill.com/terms.", "Installer source code availible at https://github.com/NotWithering/gammainstaller.")
 	/* */
 
 	fmt.Println("Getting current user...")
